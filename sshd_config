@@ -1,0 +1,39 @@
+# =============================================================
+# sshd_config - Configuration du serveur SSH pour ft_onion
+# =============================================================
+# Documentation : man sshd_config
+# Fichier par défaut sur ta machine : /etc/ssh/sshd_config
+# =============================================================
+
+# Port d'écoute SSH
+# Par défaut c'est 22, le sujet demande 4242
+Port 4242
+
+# Utiliser uniquement le protocole SSH version 2 (plus sécurisé que v1)
+Protocol 2
+
+# Fichiers de clés du serveur (générées par ssh-keygen -A dans le Dockerfile)
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+HostKey /etc/ssh/ssh_host_ed25519_key
+
+# Autoriser la connexion par mot de passe (oui pour la partie mandatory)
+PasswordAuthentication yes
+
+# Autoriser le login root (oui pour la partie mandatory, on durcira au bonus)
+PermitRootLogin yes
+
+# Activer l'authentification par clé publique
+PubkeyAuthentication yes
+
+# Durée max pour s'authentifier (en secondes)
+LoginGraceTime 60
+
+# Nombre max de tentatives d'authentification
+MaxAuthTries 6
+
+# Afficher le message du jour à la connexion
+PrintMotd yes
+
+# Utiliser le module PAM pour l'authentification
+UsePAM yes
